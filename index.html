@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Clone – Ask Anything</title>
+  <meta name="description" content="AI Clone AI is a free AI-powered answer engine that provides accurate, trusted, and real-time answers to any question." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <!-- Logo -->
+      <div class="sidebar-logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo-text">AI Clone</span>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" id="nav-search" onclick="setActive(this)">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M21 21l-4.35-4.35" stroke-linecap="round"/>
+          </svg>
+          <span>Search</span>
+        </a>
+        <a href="#" class="nav-item" id="nav-computer" onclick="setActive(this)">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="4" width="20" height="14" rx="2"/>
+            <path d="M8 20h8M12 18v2" stroke-linecap="round"/>
+          </svg>
+          <span>Computer</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item" onclick="setActive(this)">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="8" r="2"/>
+            <path d="M12 14v-2m0 0a6 6 0 100-12 6 6 0 000 12z" stroke-linecap="round"/>
+            <path d="M4 20c0-2.21 3.582-4 8-4s8 1.79 8 4" stroke-linecap="round"/>
+          </svg>
+          <span>New Thread</span>
+        </a>
+        <a href="#" class="nav-item" onclick="setActive(this)">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"/>
+            <polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>History</span>
+        </a>
+        <a href="#" class="nav-item" onclick="setActive(this)">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z"/>
+            <path d="M8 10h8M8 14h5" stroke-linecap="round"/>
+          </svg>
+          <span>Discover</span>
+        </a>
+        <a href="#" class="nav-item" onclick="setActive(this)">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          <span>Spaces</span>
+        </a>
+        <a href="#" class="nav-item" onclick="setActive(this)">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="16 7 22 7 22 13" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Finance</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+
+      <a href="#" class="nav-item" onclick="setActive(this)">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
+        </svg>
+        <span>More</span>
+      </a>
+    </div>
+
+    <!-- Recent section -->
+    <div class="sidebar-recent">
+      <div class="recent-header">
+        <span class="recent-label">Recent</span>
+        <button class="recent-toggle" id="recentToggle" title="Collapse">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14">
+            <polyline points="18 15 12 9 6 15" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="recent-content" id="recentContent">
+        <p class="recent-empty">Recent and active threads will appear here.</p>
+      </div>
+    </div>
+
+    <!-- Bottom sign in -->
+    <div class="sidebar-bottom">
+      <button class="signin-btn" id="signInBtn" onclick="openSignInModal()">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Sign In</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content" id="mainContent">
+    <div class="home-container" id="homeContainer">
+
+      <!-- Hero section -->
+      <div class="hero-section">
+        <h1 class="hero-title">AI Clone</h1>
+
+        <!-- Search box -->
+        <div class="search-wrapper">
+          <div class="search-box" id="searchBox">
+            <textarea
+              id="searchInput"
+              class="search-textarea"
+              placeholder="Ask anything..."
+              rows="1"
+              spellcheck="false"
+              autocomplete="off"
+              oninput="autoResize(this)"
+              onkeydown="handleSearchKey(event)"
+            ></textarea>
+
+            <div class="search-actions">
+              <div class="search-actions-left">
+                <button class="action-btn" id="attachBtn" title="Attach file">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="search-actions-right">
+                <button class="model-btn" id="modelBtn" onclick="toggleModelMenu()">
+                  <span id="modelName">Model</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                    <polyline points="6 9 12 15 18 9" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+
+                <button class="computer-btn" id="computerToggle" onclick="toggleComputer()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15">
+                    <rect x="2" y="4" width="20" height="14" rx="2"/>
+                    <path d="M8 20h8M12 18v2" stroke-linecap="round"/>
+                  </svg>
+                  <span>Computer</span>
+                </button>
+
+                <button class="mic-btn" id="micBtn" title="Voice input" onclick="toggleMic()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17">
+                    <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" stroke-linecap="round"/>
+                    <path d="M19 10v2a7 7 0 01-14 0v-2" stroke-linecap="round"/>
+                    <line x1="12" y1="19" x2="12" y2="23" stroke-linecap="round"/>
+                    <line x1="8" y1="23" x2="16" y2="23" stroke-linecap="round"/>
+                  </svg>
+                </button>
+
+                <button class="voice-btn" id="voiceBtn" title="Voice mode" onclick="triggerSearch()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="18" height="18">
+                    <path d="M12 2C10.343 2 9 3.343 9 5v7c0 1.657 1.343 3 3 3s3-1.343 3-3V5c0-1.657-1.343-3-3-3z" fill="white" stroke="none"/>
+                    <path d="M5 11c0 3.866 3.134 7 7 7s7-3.134 7-7" stroke="white" stroke-linecap="round"/>
+                    <line x1="12" y1="18" x2="12" y2="22" stroke="white" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Model dropdown -->
+          <div class="model-menu hidden" id="modelMenu">
+            <div class="model-menu-header">Models</div>
+            <button class="model-option selected" onclick="selectModel('Auto', this)">
+              <div class="model-info">
+                <span class="model-option-name">Auto</span>
+                <span class="model-option-desc">Best model for the query</span>
+              </div>
+              <span class="model-check">✓</span>
+            </button>
+            <button class="model-option" onclick="selectModel('Claude Sonnet 4.5', this)">
+              <div class="model-info">
+                <span class="model-option-name">Claude Sonnet 4.5</span>
+                <span class="model-option-desc">Anthropic · Fast &amp; capable</span>
+              </div>
+            </button>
+            <button class="model-option" onclick="selectModel('GPT-4o', this)">
+              <div class="model-info">
+                <span class="model-option-name">GPT-4o</span>
+                <span class="model-option-desc">OpenAI · Multimodal powerhouse</span>
+              </div>
+            </button>
+            <button class="model-option" onclick="selectModel('Gemini 2.0 Flash', this)">
+              <div class="model-info">
+                <span class="model-option-name">Gemini 2.0 Flash</span>
+                <span class="model-option-desc">Google · Fast reasoning</span>
+              </div>
+            </button>
+            <button class="model-option" onclick="selectModel('Sonar Pro', this)">
+              <div class="model-info">
+                <span class="model-option-name">Sonar Pro</span>
+                <span class="model-option-desc">AI Clone · Real-time web</span>
+              </div>
+            </button>
+            <button class="model-option pro-badge" onclick="selectModel('o3', this)">
+              <div class="model-info">
+                <span class="model-option-name">o3 <span class="badge">Pro</span></span>
+                <span class="model-option-desc">OpenAI · Advanced reasoning</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- Suggestion chips -->
+          <div class="suggestion-chips" id="suggestionChips">
+            <button class="chip" onclick="fillSearch('What causes inflation?')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 8v4l3 3" stroke-linecap="round"/>
+              </svg>
+              What causes inflation?
+            </button>
+            <button class="chip" onclick="fillSearch('Explain quantum computing simply')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14">
+                <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+              Explain quantum computing
+            </button>
+            <button class="chip" onclick="fillSearch('Best places to visit in 2025')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14">
+                <path d="M3 12l9-9 9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Best travel spots 2025
+            </button>
+            <button class="chip" onclick="fillSearch('How does AI work?')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+              How does AI work?
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Answer view -->
+    <div class="answer-view hidden" id="answerView">
+      <div class="answer-container">
+        <div class="answer-query" id="answerQuery"></div>
+        <div class="answer-sources" id="answerSources">
+          <div class="sources-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16">
+              <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Sources</span>
+          </div>
+          <div class="sources-list" id="sourcesList"></div>
+        </div>
+        <div class="answer-body" id="answerBody">
+          <div class="answer-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span>Answer</span>
+          </div>
+          <div class="answer-text" id="answerText"></div>
+          <div class="answer-actions">
+            <button class="answer-action-btn" onclick="copyAnswer()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke-linecap="round"/>
+              </svg>
+              Copy
+            </button>
+            <button class="answer-action-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15">
+                <path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3" stroke-linecap="round"/>
+              </svg>
+              Upvote
+            </button>
+            <button class="answer-action-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15">
+                <path d="M10 15v4a3 3 0 003 3l4-9V2H5.72a2 2 0 00-2 1.7l-1.38 9a2 2 0 002 2.3H10z" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 2h2.67A2.31 2.31 0 0122 4v7a2.31 2.31 0 01-2.33 2H17" stroke-linecap="round"/>
+              </svg>
+              Downvote
+            </button>
+            <button class="answer-action-btn" onclick="shareAnswer()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15">
+                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              Share
+            </button>
+          </div>
+        </div>
+
+        <!-- Follow-up search -->
+        <div class="followup-box">
+          <div class="search-box mini" id="followupBox">
+            <textarea
+              id="followupInput"
+              class="search-textarea"
+              placeholder="Ask a follow-up..."
+              rows="1"
+              oninput="autoResize(this)"
+              onkeydown="handleFollowup(event)"
+            ></textarea>
+            <div class="search-actions">
+              <div class="search-actions-left">
+                <button class="action-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/>
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="search-actions-right">
+                <button class="voice-btn small" onclick="handleFollowupSubmit()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" width="15" height="15">
+                    <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related questions -->
+        <div class="related-section" id="relatedSection">
+          <div class="related-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16">
+              <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/>
+            </svg>
+            <span>Related</span>
+          </div>
+          <div class="related-list" id="relatedList"></div>
+        </div>
+      </div>
+
+      <!-- Back button -->
+      <button class="back-btn" onclick="goHome()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <polyline points="15 18 9 12 15 6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        New Search
+      </button>
+    </div>
+  </main>
+
+  <!-- Sign In Modal -->
+  <div class="modal-overlay hidden" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeSignInModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+          <line x1="18" y1="6" x2="6" y2="18" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="modal-logo">
+        <svg class="logo-icon large" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span>AI Clone</span>
+      </div>
+      <h2 class="modal-title">Sign in to AI Clone</h2>
+      <p class="modal-subtitle">Get personalized answers and save your history</p>
+
+      <div class="auth-buttons">
+        <button class="auth-btn google" id="googleSignIn">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+        <button class="auth-btn apple" id="appleSignIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          Continue with Apple
+        </button>
+        <div class="auth-divider"><span>or</span></div>
+        <div class="email-input-wrap">
+          <input type="email" id="emailInput" placeholder="Enter your email" class="email-input" />
+          <button class="email-submit-btn" onclick="handleEmailAuth()">Continue</button>
+        </div>
+      </div>
+
+      <p class="modal-terms">By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

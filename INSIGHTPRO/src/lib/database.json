@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin User",
+      "email": "admin@clone.ai",
+      "password": "admin1234",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "Uzair Haider",
+      "email": "uzair@clone.ai",
+      "password": "user1234",
+      "role": "user"
+    },
+    {
+      "name": "ahmad",
+      "email": "",
+      "password": "user12",
+      "role": "user",
+      "id": "ZQDEhpUK3R"
+    },
+    {
+      "name": "ali",
+      "email": "",
+      "password": "ali123",
+      "role": "user",
+      "id": "zzkHUF6iWQ"
+    },
+    {
+      "name": "awais",
+      "email": "",
+      "password": "awais123",
+      "role": "user",
+      "id": "ZRiRMitGDo"
+    }
+  ]
+}
